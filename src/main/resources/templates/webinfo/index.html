@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${websites} and ${websites.size()}">no websites :(</p>
+
+<table class="table">
+
+    <tr>
+        <th>Website Name</th>
+        <th>Website Address</th>
+        <th>Password Requirements</th>
+    </tr>
+
+    <tr th:each="website : ${websites}">
+        <td th:text="${website.websiteName}"></td>
+        <td th:text="${website.websiteAddress}"></td>
+        <td th:text="${website.passwordRequirements}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

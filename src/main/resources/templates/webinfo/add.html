@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${webInfo}">
+    <div class="form-group">
+        <label th:for="name">Website Name</label>
+        <input class="form-control" th:field="*{websiteName}" />
+        <span th:errors="*{websiteName}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="address">Website Address</label>
+        <input class="form-control" th:field="*{websiteAddress}" />
+        <span th:errors="*{websiteAddress}" class="error"></span>
+    </div>
+    <label th:for="type">Type</label>
+    <div th:each="type : ${passwordRequirements}">
+        <input type="checkbox" name="passwordRequirements" th:text="${type.name}" th:value="${type}"/>
+    </div>
+    <input type="submit" value="Add Website" />
+</form>
+
+</body>
+</html>
